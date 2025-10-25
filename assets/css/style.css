@@ -104,7 +104,8 @@ body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Robo
 .landing-hero .hero-sub { margin: 0 0 16px; color: var(--muted); font-size: 16px; line-height: 1.7; }
 .landing-hero .hero-cta { display: flex; gap: 10px; }
 .hero-illus { display: grid; place-items: center; }
-.illus-card { width: 100%; max-width: 420px; height: 220px; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+.illus-card { width: 100%; max-width: 420px; height: 220px; background: #fff; border: 1px solid var(--border); border-radius: 12px; box-shadow: 0 10px 24px rgba(0,0,0,.08); display: grid; place-items: center; overflow: hidden; }
+.illus-card img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
 
 .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 8px 0 24px; }
 .feature-card { padding: 16px; background: #fff; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.05); }

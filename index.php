@@ -15,7 +15,9 @@ if (empty($_SESSION['user'])): ?>
       </div>
     </div>
     <div class="hero-illus">
-      <div class="illus-card"></div>
+      <div class="illus-card">
+        <img src="/uts pemograman/assets/uploads/landing-hero.png" alt="Ilustrasi Notely">
+      </div>
     </div>
   </section>
 
