@@ -18,7 +18,7 @@ async function loadChart(id, url, transform){
   const cfg = transform(data);
   new Chart(ctx, cfg);
 }
-const base = '/uts pemograman/api/stats_api.php';
+const base = (window.APP_BASE || '') + '/api/stats_api.php';
 loadChart('perMonth', base + '?type=per_month', (rows)=>({ type:'bar', data:{ labels: rows.map(r=>r.ym), datasets:[{ label:'Catatan per Bulan', data: rows.map(r=>Number(r.cnt)), backgroundColor:'#111827' }] } }));
 loadChart('daily', base + '?type=daily_activity', (rows)=>({ type:'line', data:{ labels: rows.map(r=>r.d), datasets:[{ label:'Aktivitas Harian (30 hari)', data: rows.map(r=>Number(r.cnt)), borderColor:'#111827' }] } }));
 loadChart('favVs', base + '?type=fav_vs_normal', (rows)=>({ type:'doughnut', data:{ labels: rows.map(r=> r.fav==1?'Favorit':'Biasa'), datasets:[{ data: rows.map(r=>Number(r.cnt)), backgroundColor:['#f59e0b','#6b7280'] }] } }));

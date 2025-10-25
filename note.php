@@ -3,6 +3,7 @@ require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/auth.php';
 require_login();
 require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/includes/base.php'; $BASE = app_base();
 
 $user_id = current_user_id();
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
@@ -35,12 +36,12 @@ if ($id > 0) {
       <button class="icon-btn" data-cmd="formatBlock" data-value="h2" title="Heading">H2</button>
       <button class="icon-btn" id="addLink" title="Link">🔗</button>
     </div>
-    <a class="btn ghost" href="/uts pemograman/index.php">Kembali</a>
+    <a class="btn ghost" href="<?= htmlspecialchars($BASE) ?>/index.php">Kembali</a>
   </div>
   <input id="title" class="title-input" placeholder="Judul" value="<?= htmlspecialchars($note['title']) ?>">
   <div id="content" class="content-editable" contenteditable="true" placeholder="Tulis catatan di sini..."><?= $note['content'] ?></div>
 
-  <form class="upload" action="/uts pemograman/actions/upload.php" method="post" enctype="multipart/form-data">
+  <form class="upload" action="<?= htmlspecialchars($BASE) ?>/actions/upload.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= (int)$note['id'] ?>">
     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'] ?? '') ?>">
     <label>Lampiran

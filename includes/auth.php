@@ -5,7 +5,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
 function require_login() {
     if (empty($_SESSION['user'])) {
-        header('Location: /uts pemograman/login.php');
+        require_once __DIR__ . '/base.php';
+        $BASE = app_base();
+        header('Location: ' . $BASE . '/login.php');
         exit;
     }
 }

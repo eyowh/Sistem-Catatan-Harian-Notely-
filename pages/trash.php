@@ -19,12 +19,13 @@ $notes = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
       <h3 class="note-title"><?= htmlspecialchars($n['title'] ?: 'Tanpa Judul') ?></h3>
       <p class="note-excerpt"><?= htmlspecialchars(mb_strimwidth(strip_tags($n['content']), 0, 120, '…')) ?></p>
       <div class="note-actions">
-        <form method="post" action="/uts pemograman/actions/restore_note.php">
+        <?php require_once __DIR__ . '/../includes/base.php'; $BASE = app_base(); ?>
+        <form method="post" action="<?= htmlspecialchars($BASE) ?>/actions/restore_note.php">
           <input type="hidden" name="id" value="<?= $n['id'] ?>">
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button class="icon-btn" title="Pulihkan">♻️</button>
         </form>
-        <form method="post" action="/uts pemograman/actions/hard_delete_note.php" onsubmit="return confirm('Hapus permanen catatan ini?')">
+        <form method="post" action="<?= htmlspecialchars($BASE) ?>/actions/hard_delete_note.php" onsubmit="return confirm('Hapus permanen catatan ini?')">
           <input type="hidden" name="id" value="<?= $n['id'] ?>">
           <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
           <button class="icon-btn" title="Hapus Permanen">🗑️</button>

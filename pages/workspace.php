@@ -38,7 +38,8 @@ if ($ws_id > 0) {
   <?php if (empty($notes)): ?><div class="empty">Belum ada catatan.</div><?php endif; ?>
   <?php foreach ($notes as $n): ?>
     <article class="note-card">
-      <a class="note-link" href="/uts pemograman/note.php?id=<?= $n['id'] ?>">
+      <?php require_once __DIR__ . '/../includes/base.php'; $BASE = app_base(); ?>
+      <a class="note-link" href="<?= htmlspecialchars($BASE) ?>/note.php?id=<?= $n['id'] ?>">
         <h3 class="note-title"><?= $n['is_pinned'] ? '📌 ' : '' ?><?= htmlspecialchars($n['title'] ?: 'Tanpa Judul') ?></h3>
         <p class="note-excerpt"><?= htmlspecialchars(mb_strimwidth(strip_tags($n['content']), 0, 140, '…')) ?></p>
         <div class="note-meta"><span><?= date('d M Y H:i', strtotime($n['updated_at'])) ?></span></div>

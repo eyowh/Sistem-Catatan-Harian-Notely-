@@ -1,4 +1,6 @@
 <?php
 session_start();
 session_destroy();
-header('Location: /uts pemograman/login.php');
+require_once __DIR__ . '/../includes/base.php';
+$BASE = app_base();
+header('Location: ' . $BASE . '/login.php');

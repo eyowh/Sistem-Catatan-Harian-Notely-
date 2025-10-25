@@ -10,13 +10,13 @@ if (empty($_SESSION['user'])): ?>
       <h1 class="hero-title">Catat ide. Fokus pada yang penting.</h1>
       <p class="hero-sub">Notely adalah tempat sederhana untuk menulis, mengorganisir, dan menemukan catatan Anda cepat, aman, dan nyaman di semua perangkat.</p>
       <div class="hero-cta">
-        <a class="btn" href="/uts pemograman/register.php">Mulai Gratis</a>
-        <a class="btn ghost" href="/uts pemograman/login.php">Masuk</a>
+        <a class="btn" href="/register.php">Mulai Gratis</a>
+        <a class="btn ghost" href="/login.php">Masuk</a>
       </div>
     </div>
     <div class="hero-illus">
       <div class="illus-card">
-        <img src="/uts pemograman/assets/uploads/landing-hero.png" alt="Ilustrasi Notely">
+        <img src="assets/uploads/landing-hero.png" alt="Ilustrasi Notely">
       </div>
     </div>
   </section>
@@ -78,7 +78,7 @@ $notes = $result->fetch_all(MYSQLI_ASSOC);
     <div class="empty">
       Belum ada catatan.
       <div style="margin-top:12px">
-        <a class="btn" href="/uts pemograman/note.php">+ Tambah Catatan Baru</a>
+        <a class="btn" href="/note.php">+ Tambah Catatan Baru</a>
       </div>
     </div>
   <?php endif; ?>
@@ -116,7 +116,7 @@ $notes = $result->fetch_all(MYSQLI_ASSOC);
       }
     ?>
     <article class="note-card <?= $n['is_favorite'] ? 'fav' : '' ?> fade-in">
-      <a class="note-link" href="/uts pemograman/note.php?id=<?= $n['id'] ?>">
+      <a class="note-link" href="/note.php?id=<?= $n['id'] ?>">
         <h3 class="note-title"><?= htmlspecialchars($n['title'] ?: 'Tanpa Judul') ?></h3>
         <div class="note-summary <?= $isList ? 'list' : 'p' ?>">
           <?php if ($isList && !empty($listItems)): ?>
@@ -137,20 +137,20 @@ $notes = $result->fetch_all(MYSQLI_ASSOC);
         <i data-feather="star"></i>
       </button>
       <div class="note-actions">
-        <a class="icon-btn" href="/uts pemograman/note.php?id=<?= $n['id'] ?>" title="Edit" aria-label="Edit"><i data-feather="edit-2"></i></a>
+        <a class="icon-btn" href="/note.php?id=<?= $n['id'] ?>" title="Edit" aria-label="Edit"><i data-feather="edit-2"></i></a>
         <?php if ($filter==='trash'): ?>
-          <form method="post" action="/uts pemograman/actions/restore_note.php">
+          <form method="post" action="/actions/restore_note.php">
             <input type="hidden" name="id" value="<?= $n['id'] ?>">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <button class="icon-btn" title="Pulihkan" aria-label="Pulihkan"><i data-feather="rotate-ccw"></i></button>
           </form>
-          <form method="post" action="/uts pemograman/actions/hard_delete_note.php" onsubmit="return confirm('Hapus permanen catatan ini?')">
+          <form method="post" action="/actions/hard_delete_note.php" onsubmit="return confirm('Hapus permanen catatan ini?')">
             <input type="hidden" name="id" value="<?= $n['id'] ?>">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <button class="icon-btn" title="Hapus Permanen" aria-label="Hapus Permanen"><i data-feather="trash-2"></i></button>
           </form>
         <?php else: ?>
-          <form method="post" action="/uts pemograman/actions/delete_note.php" onsubmit="return confirm('Pindahkan ke sampah?')">
+          <form method="post" action="/actions/delete_note.php" onsubmit="return confirm('Pindahkan ke sampah?')">
             <input type="hidden" name="id" value="<?= $n['id'] ?>">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token()) ?>">
             <button class="icon-btn" title="Hapus" aria-label="Hapus"><i data-feather="trash-2"></i></button>

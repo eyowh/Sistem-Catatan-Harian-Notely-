@@ -8,11 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/uts pemograman/assets/css/style.css">
+  <?php require_once __DIR__ . '/base.php'; $BASE = app_base(); ?>
+  <link rel="stylesheet" href="<?= htmlspecialchars($BASE) ?>/assets/css/style.css">
   <?php require_once __DIR__ . '/csrf.php'; ?>
   <meta name="csrf-token" content="<?= htmlspecialchars(csrf_token()) ?>">
-  <meta name="app-base" content="/uts pemograman">
-  <script>window.APP_BASE='/uts pemograman';</script>
+  <meta name="app-base" content="<?= htmlspecialchars($BASE) ?>">
+  <script>window.APP_BASE='<?= htmlspecialchars($BASE) ?>';</script>
   </head>
 <body class="<?= !empty($_SESSION['user']) ? 'logged-in' : 'guest' ?> <?= isset($PAGE_CLASS) ? htmlspecialchars($PAGE_CLASS) : '' ?>">
 <header class="topbar">
@@ -22,19 +23,19 @@
   </div>
   <div class="top-actions">
     <?php if (!empty($_SESSION['user'])): ?>
-      <a class="btn" href="/uts pemograman/note.php">+ Catatan</a>
-      <form class="search" action="/uts pemograman/index.php" method="get">
+      <a class="btn" href="<?= htmlspecialchars($BASE) ?>/note.php">+ Catatan</a>
+      <form class="search" action="<?= htmlspecialchars($BASE) ?>/index.php" method="get">
         <input type="text" name="q" placeholder="Cari catatan..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
       </form>
       <button id="toggleView" class="icon-btn" title="Ganti tampilan">🔳</button>
       <button id="toggleTheme" class="icon-btn" title="Tema">🌓</button>
       <div class="user-menu">
         <span class="user-name"><?= htmlspecialchars($_SESSION['user']['name'] ?? '') ?></span>
-        <a class="link" href="/uts pemograman/actions/logout.php">Keluar</a>
+        <a class="link" href="<?= htmlspecialchars($BASE) ?>/actions/logout.php">Keluar</a>
       </div>
     <?php else: ?>
-      <a class="btn" href="/uts pemograman/login.php">Masuk</a>
-      <a class="btn ghost" href="/uts pemograman/register.php">Daftar</a>
+      <a class="btn" href="<?= htmlspecialchars($BASE) ?>/login.php">Masuk</a>
+      <a class="btn ghost" href="<?= htmlspecialchars($BASE) ?>/register.php">Daftar</a>
     <?php endif; ?>
   </div>
   <script src="https://unpkg.com/feather-icons"></script>
